@@ -10,11 +10,21 @@
 */
 
 document.getElementById("btn-withdraw").addEventListener("click", function () {
-  const newWithdrawAmount = getInputFieldValueById("withdraw-field");
-  const previousWithdrawTotal = getTextElementValueById("withdraw-total ");
-  const newWithdrawTotal = previousWithdrawTotal + newWithdrawAmount;
-  setTextElementValueById(withdraw - total, newWithdrawTotal);
-  const previousBalanceTotal = getTextElementValueById("balance-total");
-  const newBalanceTotal = previousBalanceTotal - newWithdrawAmount;
-  setTextElementValueById("balance-total", newBalanceTotal);
+  const newWithdrawAmount = document.getElementById("withdraw-field").value;
+  const withdrawAmount = parseInt(newWithdrawAmount);
+  
+  // setTextElementValueById(withdraw - total, newWithdrawTotal);
+  const previousBalanceTotal = document.getElementById("balance-total").innerText;
+  const previousBalance = parseInt(previousBalanceTotal)
+  if(previousBalance > withdrawAmount){
+    const newBalanceTotal = previousBalance - withdrawAmount;
+    document.getElementById("balance-total").innerText = newBalanceTotal;
+    const previousWithdrawTotal = document.getElementById("withdraw-total").innerText;
+    const newWithdrawTotal = parseInt(previousWithdrawTotal) + withdrawAmount;
+    document.getElementById("withdraw-total").innerText = newWithdrawTotal
+  }else{
+    alert('You cant withdraw. your withdraw amount is greater than total balance')
+  }
+  console.log(typeof previousBalanceTotal)
+
 });
